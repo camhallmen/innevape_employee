@@ -1,0 +1,564 @@
+/* Home Page */
+
+body {
+    /* background-color: rgba(23, 143, 214, 0.7); */
+    /* background-color: rgba(119,136,153, 0.7);
+    */
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.header {
+    overflow: hidden;
+    background-color: rgba(119,136,153);
+    padding: 10px 5px;
+    text-align: center;
+}
+
+.header-center {
+    display: inline-block;
+}
+
+html, body {
+    height: 100%;
+}
+
+.container {
+    background-color: white;
+}
+
+.row {
+    width: 100%;
+}
+
+.col-sm-4 {
+    border-right: solid #A24549 2px;
+}
+
+.center {
+    text-align: center;
+}
+
+.navbar {
+    background-color: rgba(119,136,153) !important;
+    border-bottom: solid #A24549 3px !important;
+}
+
+#modal-title {
+    color: black;
+}
+
+#myBtn {
+    background-color: #A24549;
+    border: none !important;
+}
+
+#myBtn:hover {
+    color: black;
+    transition: all 0.3s ease;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  #content-wrap {
+    padding-bottom: 2.5rem;    /* Footer height */
+  }
+
+  #float-greeting-right {
+    background-color: rgba(119,136,153,0.7) !important;
+    /* position: absolute; */
+    right: 0px;
+  }
+
+  #greeting-color {
+    background-color: rgba(119,136,153,0.7) !important;
+    margin: auto;
+  }
+  
+  #footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+.sidebar {
+    height: 80%;
+    background-color: #45A29E;
+    width: 5%;
+}
+
+#go-to-updates {
+    display: none;
+}
+
+#go-to-updates:hover {
+    color: #A24549; 
+    text-shadow: 2px 2px 8px #A24549;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    color: #A24549; 
+    text-shadow: 2px 2px 8px #A24549;
+    transition: all 0.3s ease;
+}
+
+#go-to-search {
+    /* margin-right: 2%;
+    margin-left: 1%; */
+    display: none;
+}
+
+#go-to-search:hover {
+    color: #A24549; 
+    text-shadow: 2px 2px 8px #A24549;
+    transition: all 0.3s ease;
+}
+
+.sidebar-icon {
+    display: block;
+}
+
+#my-header {
+    background-image: url("../images/navbar3.jpg");
+    padding: 30px;
+}
+
+#slogan {
+    color: #A24549;
+    font-size: 30px !important;
+}
+
+.my-4 {
+    background-color: #A24549 !important;
+}
+
+.home-card {
+    /* color: rgb(70,130,180); */
+    color: black;
+    background-color: #fffcf6 !important;
+    text-align: center;
+    font-size: 20px;
+    padding: 20px;
+    border-style: solid;
+    border-radius: 30px;
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-bottom: 30px;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+#home-update {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.display-4 {
+    color: black;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: #edece8;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+.jumbocard {
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.lead {
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#welcome-txt {
+    display: inline-block;
+    color: black;
+    border-bottom: 1px solid #000;
+    padding-bottom: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.update-container {
+    margin-left: 5%;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link:hover {
+    color: #A24549 !important; 
+    text-shadow: 2px 2px 8px #A24549;
+    transition: all 0.3s ease;
+}
+
+.icon {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+div.item {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 120px;
+    background-color: #ccdde8;
+    border-radius: 30px;
+    border: solid #ccdde8 3px;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.item:hover {
+    opacity: 0.5;
+    border: solid #A24549 3px;
+    border-radius: 10px;
+    transform: scale(1.2);
+    transition: all 0.3s ease;
+}
+
+.item:hover .caption {
+    color: black;
+}
+
+img {
+    width: 64px;
+    height: 64px;
+}
+
+.caption {
+    display: block;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* a:visited { color: purple; } */
+
+#logout {
+    text-align: center;
+    margin-right: 20px;
+    color: #007bff;
+}
+
+#logout:hover {
+    color: #A24549 !important; 
+    text-shadow: 2px 2px 8px #A24549;
+    transition: all 0.3s ease;
+}
+
+#signup-link:hover {
+    color: #A24549 !important; 
+    text-shadow: 2px 2px 8px #A24549;
+    transition: all 0.3s ease;
+}
+
+#display-after-creation {
+    display: none;
+}
+
+#on-creation-nav:hover {
+    color: #A24549 !important; 
+    text-shadow: 2px 2px 8px #A24549;
+    transition: all 0.3s ease;
+}
+
+#home-link {
+    color: black;
+}
+
+#login-redirect {
+    display: none;
+    margin-right: 1%;
+    margin-left: 2%;
+}
+
+#home-link:hover {
+    color: white; 
+    text-shadow: 2px 2px 8px white;
+    transition: all 0.3s ease;
+}
+
+#greeting {
+    margin-right: 10px;
+    color: #edece8;
+    font-weight: bold;
+}
+
+.dropdown-menu {
+    background-color: #e9ecef
+}
+
+footer {
+    background-color: rgba(119,136,153);
+    padding: 20px;
+    border-top: solid #A24549 3px !important;
+}
+
+.footer-txt {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #edece8;
+}
+
+/* Employee News Page */
+
+.jumbotron-index {
+    text-align: center;
+    font-size: 20px;
+    background-color: rgb(255,250,205);
+    padding: 20px;
+    border-style: solid;
+    border-radius: 30px;
+    margin-top: 30px;
+    margin-right: 3%;
+    margin-left: 3%;
+    margin-bottom: 30px;
+    box-shadow: 2px 2px 2px 2px black;
+}
+
+.index-card {
+    text-align: center;
+    font-size: 20px;
+    background-color: rgb(255,250,205);
+    padding: 20px;
+    border-style: solid;
+    border-radius: 30px;
+    margin-right: 30%;
+    margin-left: 30%;
+    margin-bottom: 30px;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+/* Empolyee Policies Page */
+
+#policies-list {
+    text-align: left !important;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+li {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#policy-header {
+    color: black !important;
+}
+
+.policy {
+    color: black;
+    font-size: 20px;
+}
+
+.policy:hover {
+    color: #A24549; 
+    text-shadow: 2px 2px 8px #A24549;
+    transition: all 0.3s ease;
+}
+
+#policies-checkbox {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+#submit-btn {
+    margin-top: 20px;
+    cursor: not-allowed;
+}
+
+#policies-checkbox {
+    display: none;
+}
+
+/* Employee Info */
+
+.info-heading {
+    color: black;
+}
+
+.info-listed {
+    color: black;
+}
+
+/* Login Page */
+
+.login-card {
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+#my-message {
+    width: 50%;
+    height: 50%;
+}
+
+/* Login Modal */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 1;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Admin Search */
+  #display-admin-search {
+      display: none;
+  }
+
+  #name-reference {
+      display: none;
+  }
+
+  #name-list {
+      padding-left: 0 !important;
+      margin: 0 !important;
+  }
+
+  #show-all-names:hover {
+    color: #A24549; 
+    text-shadow: 2px 2px 8px #A24549;
+    transition: all 0.3s ease;
+  }
+
+  #hide-name-reference:hover {
+    color: #A24549; 
+    text-shadow: 2px 2px 8px #A24549;
+    transition: all 0.3s ease;
+  }
+
+  .edit-form {
+      display: none;
+  }
+
+  .admin-edit-btn {
+      display: none;
+  }
+
+  .make-result-white {
+      color: black;
+  }
+
+  #search-value {
+      width: 20%;
+  }
+
+  #submit-search {
+      width: 10%;
+  }
+
+  .col-sm-6 {
+      background-color: #edece8 !important;
+  }
+
+  .container {
+    background-color: #edece8 !important; 
+  }
+
+#date-container {
+    width: 100%;
+    margin: auto;
+}
+
+#reason-container {
+    width: 100%;
+    margin: auto;
+}
+
+#print-page {
+    display: none;
+}
+
+#print-page:hover {
+    color: #A24549; 
+    text-shadow: 2px 2px 8px #A24549;
+    transition: all 0.3s ease;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+.g-recaptcha > div {
+    width: auto !important;
+}
+
+/* Breakpoints */
+
+@media only screen and (max-width: 479px) {
+    .col-sm-4 {
+        display: none;
+    }
+    .col-sm-8 {
+        margin-left: 10%;
+        margin-right: 2%;
+        padding: 0;
+    }
+    #greeting {
+        display: none;
+    }
+    .hide-mobile {
+        display: none;
+    }
+    #welcome-txt {
+        display: none;
+    }
+    .g-recaptcha > div {
+        width: 100%;
+    }
+    .item {
+        margin-bottom: 10px;
+    }
+    #policies-list {
+        margin: 0;
+    }
+} 

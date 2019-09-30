@@ -1,0 +1,39 @@
+.print:last-child {
+    page-break-after: auto;
+}
+
+h1 {
+    display: none;
+}
+
+#add-message-form {
+    display: none;
+}
+
+#print-page {
+    display: none !important;
+}
+
+#show-all-names {
+    display: none;
+}
+
+#hide-print {
+    display: none;
+}
+
+#hide-print2 {
+    display: none;
+}
+
+footer {
+    display: none;
+}
+
+#hide-print3 {
+    display: none;
+}
+
+.hide-br {
+    display: none;
+}
