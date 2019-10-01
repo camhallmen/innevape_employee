@@ -61,7 +61,17 @@ html, body {
     border: none !important;
 }
 
+#mobile-btn {
+    background-color: #A24549;
+    border: none !important;
+}
+
 #myBtn:hover {
+    color: black;
+    transition: all 0.3s ease;
+}
+
+#mobile-btn:hover {
     color: black;
     transition: all 0.3s ease;
 }
@@ -595,5 +605,11 @@ h3 {
 @media only screen and (min-width: 500px) {
     .hide-full {
         display: none;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .g-recaptcha > div {
+        margin-left: 52%;
     }
 }
