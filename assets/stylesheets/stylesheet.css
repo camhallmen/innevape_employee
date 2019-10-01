@@ -578,6 +578,13 @@ h3 {
     }
 }
 
+@media only screen and (max-width: 412px) {
+    .g-recaptcha > div {
+        position: relative;
+        right: 18px;
+    }
+}
+
 @media only screen and (max-width: 395px) {
     .g-recaptcha > div {
         position: relative;
