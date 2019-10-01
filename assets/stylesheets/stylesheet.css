@@ -529,12 +529,17 @@ h3 {
 }
 
 .g-recaptcha > div {
-    width: auto !important;
+    width: auto;
+    margin: auto;
+}
+
+.white-txt {
+    color: white;
 }
 
 /* Breakpoints */
 
-@media only screen and (max-width: 479px) {
+@media only screen and (max-width: 499px) {
     .col-sm-4 {
         display: none;
     }
@@ -561,4 +566,14 @@ h3 {
     #policies-list {
         margin: 0;
     }
-} 
+    #myBtn {
+        margin-left: 5%;
+        margin-right: 7%;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .hide-full {
+        display: none;
+    }
+}
