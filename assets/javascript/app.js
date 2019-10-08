@@ -272,6 +272,7 @@ auth.onAuthStateChanged(user => {
                     $("#search-vacation-renewal").empty()
                     $("#put-date-here").empty()
                     $("#put-reason-here").empty()
+                    $("#search-has-read").empty()
                     $(".edit-form").css("display", "none")
 
                     // Empty input fields
@@ -317,6 +318,7 @@ auth.onAuthStateChanged(user => {
                     $("#update-vacation-renewal").val("")
                     $("#update-absence-date").val("")
                     $("#update-absence-date").val("")
+                    $("#update-has-read").val("")
 
                     // Display results
                     $("#search-name").append(info.name)
@@ -361,6 +363,7 @@ auth.onAuthStateChanged(user => {
                     $("#search-available-vacation").append(info.availableVacation)
                     $("#search-vacation-used").append(info.vacationUsed)
                     $("#search-vacation-renewal").append(info.vacationRenewal)
+                    $("#search-has-read").append(info.has_read, info.submitted_at)
                     }
                     adminUpdate()
 
@@ -804,6 +807,17 @@ auth.onAuthStateChanged(user => {
                     $("#search-vacation-renewal").html(newData)
                 })
 
+                // Update has read policies
+                $("#push-has-read").on("click", (e) => {
+                    e.preventDefault()
+                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                    var newData = $("#update-has-read").val()
+                    db.collection("users").doc(dataID).update({
+                        has_read: newData
+                    })
+                    $("#search-has-read").html(newData)
+                })
+
                 // Update absence date
                 $("#push-absence-date").on("click", (e) => {
                     e.preventDefault()
@@ -850,7 +864,7 @@ auth.onAuthStateChanged(user => {
             var checkTheCheckbox = document.getElementById("has-read-box").checked
             if (checkTheCheckbox === true) {
                 alert("Thank you for reading all Innevape Policies!")
-                db.collection("read_all_policies").add({
+                db.collection("users").doc(user.email).update({
                     has_read: user.email + " has read all Innevape Policies",
                     submitted_at: firebase.firestore.Timestamp.fromDate(new Date())
                 })
