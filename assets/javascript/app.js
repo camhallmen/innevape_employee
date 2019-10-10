@@ -8,7 +8,7 @@ const vacationTime = document.querySelector("#vacation-time")
 const jobTitle = document.querySelector("#job-title")
 
 // Show or hide Pay Rate
-$("#paybtn").on("click", function() {
+$("#paybtn").on("click", function () {
     var display = $("#payrate")[0].style.cssText
     if (display === "display: none;") {
         $("#payrate").show()
@@ -24,16 +24,7 @@ function recaptchaCallback() {
     submitBtn.style.cursor = "pointer"
 }
 
-// Resize for mobile
-// $(window).resize(function () {
-//     var viewportWidth = $(window).width();
-//     if (viewportWidth < 480) {
-//             $(".col-sm-8").removeClass("col-sm-8")
-//     }
-// });
-
 // Signup new user
-
 $("#submit-new-user").on("click", (e) => {
     e.preventDefault()
     var newName = $("#new-user-fullname").val()
@@ -63,26 +54,26 @@ auth.onAuthStateChanged(user => {
         // Query firebase for user info
         var docRef = db.collection("users").doc(user.email);
 
-        docRef.get().then(function(doc) {
+        docRef.get().then(function (doc) {
             if (doc.exists) {
-            const info = doc.data()
+                const info = doc.data()
 
-            // Write data to html
-            userName.append(info.name)
-            status.append(info.status)
-            startDate.append(info.startDate)
-            nextEval.append(info.nextEval)
-            salary.append(info.salary)
-            vacationTime.append(info.vacationTime)
-            jobTitle.append(info.title)
+                // Write data to html
+                userName.append(info.name)
+                status.append(info.status)
+                startDate.append(info.startDate)
+                nextEval.append(info.nextEval)
+                salary.append(info.salary)
+                vacationTime.append(info.vacationTime)
+                jobTitle.append(info.title)
 
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-    }
-    }).catch(function(error) {
-        console.log("Error getting document:", error);
-    });
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch(function (error) {
+            console.log("Error getting document:", error);
+        });
     } else {
         console.log("User logged out")
         $("#greeting").html("Please Login!")
@@ -158,14 +149,14 @@ auth.onAuthStateChanged(user => {
         // All functions once verified
 
         // Show all dates absent
-        var showDateTracking = function(doc) {
+        var showDateTracking = function (doc) {
             userQuery = $("#search-value").val()
             db.collection("users").where("name", "==", userQuery).get().then((snapshot) => {
                 snapshot.docs.forEach(doc => {
                     var dates = doc.data().date
                     var ol = document.createElement("ol")
                     document.getElementById("put-date-here").appendChild(ol)
-                    dates.forEach(function(date) {
+                    dates.forEach(function (date) {
                         var li = document.createElement("li")
                         ol.appendChild(li)
                         li.innerHTML += date
@@ -175,14 +166,14 @@ auth.onAuthStateChanged(user => {
         }
 
         // Show all reasons for being absent
-        var showReasonTracking = function(doc) {
+        var showReasonTracking = function (doc) {
             userQuery = $("#search-value").val()
             db.collection("users").where("name", "==", userQuery).get().then((snapshot) => {
                 snapshot.docs.forEach(doc => {
                     var reasons = doc.data().reason
                     var ol = document.createElement("ol")
                     document.getElementById("put-reason-here").appendChild(ol)
-                    reasons.forEach(function(reason) {
+                    reasons.forEach(function (reason) {
                         var li = document.createElement("li")
                         ol.appendChild(li)
                         li.innerHTML += reason
@@ -193,7 +184,7 @@ auth.onAuthStateChanged(user => {
 
         // Show name list function
         const nameList = $("#name-list")
-        var showNameList = function(doc) {
+        var showNameList = function (doc) {
             var li = document.createElement("li")
             var name = document.createElement("span")
             console.log(doc.data().name)
@@ -203,7 +194,7 @@ auth.onAuthStateChanged(user => {
         }
 
         // Call namelist function with data
-        $("#show-all-names").on("click", function() {
+        $("#show-all-names").on("click", function () {
             $("#name-reference").css("display", "block")
             db.collection("users").get().then((snapshot) => {
                 snapshot.docs.forEach(doc => {
@@ -213,7 +204,7 @@ auth.onAuthStateChanged(user => {
         })
 
         // Hide namelist
-        $("#hide-name-reference").on("click", function() {
+        $("#hide-name-reference").on("click", function () {
             $("#name-reference").css("display", "none")
         })
 
@@ -226,623 +217,623 @@ auth.onAuthStateChanged(user => {
                 snapshot.docs.forEach(doc => {
                     showDateTracking(doc)
                     showReasonTracking(doc)
-                    var adminUpdate = function() {
-                    console.log(doc.data())
-                    var info = doc.data()
-                    // Empty data if any
-                    $("#search-name").empty()
-                    $("#search-status").empty()
-                    $("#search-start-date").empty()
-                    $("#search-next-eval").empty()
-                    $("#search-salary").empty()
-                    $("#search-vacation-time").empty()
-                    $("#search-job-title").empty()
-                    $("#search-phone").empty()
-                    $("#search-email").empty()
-                    $("#search-emergency").empty()
-                    $("#search-health").empty()
-                    $("#search-health-date").empty()
-                    $("#search-health-eligible").empty()
-                    $("#search-street").empty()
-                    $("#search-city").empty()
-                    $("#search-zip").empty()
-                    $("#search-health-provider").empty()
-                    $("#search-provider-notes").empty()
-                    $("#search-aflac-yes").empty()
-                    $("#search-aflac-no").empty()
-                    $("#search-lasteval-date").empty()
-                    $("#search-lasteval-score").empty()
-                    $("#search-90day").empty()
-                    $("#search-6month").empty()
-                    $("#search-90day-review").empty()
-                    $("#search-term").empty()
-                    $("#search-eval-notes").empty()
-                    $("#search-results-notes").empty()
-                    $("#search-first-coaching-date").empty()
-                    $("#search-first-coaching-reason").empty()
-                    $("#search-second-coaching-date").empty()
-                    $("#search-second-coaching-reason").empty()
-                    $("#search-third-coaching-date").empty()
-                    $("#search-third-coaching-reason").empty()
-                    $("#search-disc-term-date").empty()
-                    $("#search-disc-term-reason").empty()
-                    $("#search-vacation-eligible-date").empty()
-                    $("#search-available-vacation").empty()
-                    $("#search-vacation-used").empty()
-                    $("#search-vacation-renewal").empty()
-                    $("#put-date-here").empty()
-                    $("#put-reason-here").empty()
-                    $("#search-has-read").empty()
-                    $(".edit-form").css("display", "none")
+                    var adminUpdate = function () {
+                        console.log(doc.data())
+                        var info = doc.data()
+                        // Empty data if any
+                        $("#search-name").empty()
+                        $("#search-status").empty()
+                        $("#search-start-date").empty()
+                        $("#search-next-eval").empty()
+                        $("#search-salary").empty()
+                        $("#search-vacation-time").empty()
+                        $("#search-job-title").empty()
+                        $("#search-phone").empty()
+                        $("#search-email").empty()
+                        $("#search-emergency").empty()
+                        $("#search-health").empty()
+                        $("#search-health-date").empty()
+                        $("#search-health-eligible").empty()
+                        $("#search-street").empty()
+                        $("#search-city").empty()
+                        $("#search-zip").empty()
+                        $("#search-health-provider").empty()
+                        $("#search-provider-notes").empty()
+                        $("#search-aflac-yes").empty()
+                        $("#search-aflac-no").empty()
+                        $("#search-lasteval-date").empty()
+                        $("#search-lasteval-score").empty()
+                        $("#search-90day").empty()
+                        $("#search-6month").empty()
+                        $("#search-90day-review").empty()
+                        $("#search-term").empty()
+                        $("#search-eval-notes").empty()
+                        $("#search-results-notes").empty()
+                        $("#search-first-coaching-date").empty()
+                        $("#search-first-coaching-reason").empty()
+                        $("#search-second-coaching-date").empty()
+                        $("#search-second-coaching-reason").empty()
+                        $("#search-third-coaching-date").empty()
+                        $("#search-third-coaching-reason").empty()
+                        $("#search-disc-term-date").empty()
+                        $("#search-disc-term-reason").empty()
+                        $("#search-vacation-eligible-date").empty()
+                        $("#search-available-vacation").empty()
+                        $("#search-vacation-used").empty()
+                        $("#search-vacation-renewal").empty()
+                        $("#put-date-here").empty()
+                        $("#put-reason-here").empty()
+                        $("#search-has-read").empty()
+                        $(".edit-form").css("display", "none")
 
-                    // Empty input fields
-                    $("#update-name").val("")
-                    $("#update-status").val("")
-                    $("#update-start-date").val("")
-                    $("#update-next-eval").val("")
-                    $("#update-salary").val("")
-                    $("#update-vacation-time").val("")
-                    $("#update-title").val("")
-                    $("#update-phone").val("")
-                    $("#update-email").val("")
-                    $("#update-emergency").val("")
-                    $("#update-health").val("")
-                    $("#update-health-date").val("")
-                    $("#update-health-eligible").val("")
-                    $("#update-street").val("")
-                    $("#update-city").val("")
-                    $("#update-zip").val("")
-                    $("#update-health-provider").val("")
-                    $("#update-provider-notes").val("")
-                    $("#update-aflac-yes").val("")
-                    $("#update-aflac-no").val("")
-                    $("#update-lasteval-date").val("")
-                    $("#update-lasteval-score").val("")
-                    $("#update-90day").val("")
-                    $("#update-6month").val("")
-                    $("#update-90day-review").val("")
-                    $("#update-term").val("")
-                    $("#update-eval-notes").val("")
-                    $("#update-results-notes").val("")
-                    $("#update-first-coaching-date").val("")
-                    $("#update-first-coaching-reason").val("")
-                    $("#update-second-coaching-date").val("")
-                    $("#update-second-coaching-reason").val("")
-                    $("#update-third-coaching-date").val("")
-                    $("#update-third-coaching-reason").val("")
-                    $("#update-disc-term-date").val("")
-                    $("#update-disc-term-reason").val("")
-                    $("#update-vacation-eligible-date").val("")
-                    $("#update-available-vacation").val("")
-                    $("#update-vacation-used").val("")
-                    $("#update-vacation-renewal").val("")
-                    $("#update-absence-date").val("")
-                    $("#update-absence-date").val("")
-                    $("#update-has-read").val("")
+                        // Empty input fields
+                        $("#update-name").val("")
+                        $("#update-status").val("")
+                        $("#update-start-date").val("")
+                        $("#update-next-eval").val("")
+                        $("#update-salary").val("")
+                        $("#update-vacation-time").val("")
+                        $("#update-title").val("")
+                        $("#update-phone").val("")
+                        $("#update-email").val("")
+                        $("#update-emergency").val("")
+                        $("#update-health").val("")
+                        $("#update-health-date").val("")
+                        $("#update-health-eligible").val("")
+                        $("#update-street").val("")
+                        $("#update-city").val("")
+                        $("#update-zip").val("")
+                        $("#update-health-provider").val("")
+                        $("#update-provider-notes").val("")
+                        $("#update-aflac-yes").val("")
+                        $("#update-aflac-no").val("")
+                        $("#update-lasteval-date").val("")
+                        $("#update-lasteval-score").val("")
+                        $("#update-90day").val("")
+                        $("#update-6month").val("")
+                        $("#update-90day-review").val("")
+                        $("#update-term").val("")
+                        $("#update-eval-notes").val("")
+                        $("#update-results-notes").val("")
+                        $("#update-first-coaching-date").val("")
+                        $("#update-first-coaching-reason").val("")
+                        $("#update-second-coaching-date").val("")
+                        $("#update-second-coaching-reason").val("")
+                        $("#update-third-coaching-date").val("")
+                        $("#update-third-coaching-reason").val("")
+                        $("#update-disc-term-date").val("")
+                        $("#update-disc-term-reason").val("")
+                        $("#update-vacation-eligible-date").val("")
+                        $("#update-available-vacation").val("")
+                        $("#update-vacation-used").val("")
+                        $("#update-vacation-renewal").val("")
+                        $("#update-absence-date").val("")
+                        $("#update-absence-date").val("")
+                        $("#update-has-read").val("")
 
-                    // Display results
-                    $("#search-name").append(info.name)
-                    document.querySelector("#search-name").setAttribute("data-id", doc.id)
-                    console.log(doc.id)
-                    $("#search-status").append(info.status)
-                    $("#search-start-date").append(info.startDate)
-                    $("#search-next-eval").append(info.nextEval)
-                    $("#search-salary").append(info.salary)
-                    $("#search-vacation-time").append(info.vacationTime)
-                    $("#search-job-title").append(info.title)
-                    $("#search-phone").append(info.phone)
-                    $("#search-email").append(info.email)
-                    $("#search-emergency").append(info.emergency)
-                    $("#search-health").append(info.eligibleForHealth)
-                    $("#search-health-date").append(info.healthAccepted)
-                    $("#search-health-eligible").append(info.healthEligible)
-                    $("#search-street").append(info.street)
-                    $("#search-city").append(info.city)
-                    $("#search-zip").append(info.zip)
-                    $("#search-health-provider").append(info.healthProvider)
-                    $("#search-provider-notes").append(info.providerNotes)
-                    $("#search-aflac-yes").append(info.aflacYes)
-                    $("#search-aflac-no").append(info.aflacNo)
-                    $("#search-lasteval-date").append(info.lastEvalDate)
-                    $("#search-lasteval-score").append(info.lastEvalScore)
-                    $("#search-90day").append(info.nintyDay)
-                    $("#search-6month").append(info.sixMonth)
-                    $("#search-90day-review").append(info.nintyDayReview)
-                    $("#search-term").append(info.term)
-                    $("#search-eval-notes").append(info.evalNotes)
-                    $("#search-results-notes").append(info.resultsNotes)
-                    $("#search-first-coaching-date").append(info.firstCoachingDate)
-                    $("#search-first-coaching-reason").append(info.firstCoachingReason)
-                    $("#search-second-coaching-date").append(info.secondCoachingDate)
-                    $("#search-second-coaching-reason").append(info.secondCoachingReason)
-                    $("#search-third-coaching-date").append(info.thirdCoachingDate)
-                    $("#search-third-coaching-reason").append(info.thirdCoachingReason)
-                    $("#search-disc-term-date").append(info.discTermDate)
-                    $("#search-disc-term-reason").append(info.discTermReason)
-                    $("#search-vacation-eligible-date").append(info.vacationEligibleDate)
-                    $("#search-available-vacation").append(info.availableVacation)
-                    $("#search-vacation-used").append(info.vacationUsed)
-                    $("#search-vacation-renewal").append(info.vacationRenewal)
-                    $("#search-has-read").append(info.has_read, info.submitted_at)
+                        // Display results
+                        $("#search-name").append(info.name)
+                        document.querySelector("#search-name").setAttribute("data-id", doc.id)
+                        console.log(doc.id)
+                        $("#search-status").append(info.status)
+                        $("#search-start-date").append(info.startDate)
+                        $("#search-next-eval").append(info.nextEval)
+                        $("#search-salary").append(info.salary)
+                        $("#search-vacation-time").append(info.vacationTime)
+                        $("#search-job-title").append(info.title)
+                        $("#search-phone").append(info.phone)
+                        $("#search-email").append(info.email)
+                        $("#search-emergency").append(info.emergency)
+                        $("#search-health").append(info.eligibleForHealth)
+                        $("#search-health-date").append(info.healthAccepted)
+                        $("#search-health-eligible").append(info.healthEligible)
+                        $("#search-street").append(info.street)
+                        $("#search-city").append(info.city)
+                        $("#search-zip").append(info.zip)
+                        $("#search-health-provider").append(info.healthProvider)
+                        $("#search-provider-notes").append(info.providerNotes)
+                        $("#search-aflac-yes").append(info.aflacYes)
+                        $("#search-aflac-no").append(info.aflacNo)
+                        $("#search-lasteval-date").append(info.lastEvalDate)
+                        $("#search-lasteval-score").append(info.lastEvalScore)
+                        $("#search-90day").append(info.nintyDay)
+                        $("#search-6month").append(info.sixMonth)
+                        $("#search-90day-review").append(info.nintyDayReview)
+                        $("#search-term").append(info.term)
+                        $("#search-eval-notes").append(info.evalNotes)
+                        $("#search-results-notes").append(info.resultsNotes)
+                        $("#search-first-coaching-date").append(info.firstCoachingDate)
+                        $("#search-first-coaching-reason").append(info.firstCoachingReason)
+                        $("#search-second-coaching-date").append(info.secondCoachingDate)
+                        $("#search-second-coaching-reason").append(info.secondCoachingReason)
+                        $("#search-third-coaching-date").append(info.thirdCoachingDate)
+                        $("#search-third-coaching-reason").append(info.thirdCoachingReason)
+                        $("#search-disc-term-date").append(info.discTermDate)
+                        $("#search-disc-term-reason").append(info.discTermReason)
+                        $("#search-vacation-eligible-date").append(info.vacationEligibleDate)
+                        $("#search-available-vacation").append(info.availableVacation)
+                        $("#search-vacation-used").append(info.vacationUsed)
+                        $("#search-vacation-renewal").append(info.vacationRenewal)
+                        $("#search-has-read").append(info.has_read, info.submitted_at)
                     }
                     adminUpdate()
 
-                // Update name
-                $("#push-name").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-name").val()
-                    db.collection("users").doc(dataID).update({
-                        name: newData
+                    // Update name
+                    $("#push-name").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-name").val()
+                        db.collection("users").doc(dataID).update({
+                            name: newData
+                        })
+                        $("#search-name").html(newData)
                     })
-                    $("#search-name").html(newData)
-                })
 
-                // Update status
-                $("#push-status").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-status").val()
-                    db.collection("users").doc(dataID).update({
-                        status: newData
+                    // Update status
+                    $("#push-status").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-status").val()
+                        db.collection("users").doc(dataID).update({
+                            status: newData
+                        })
+                        $("#search-status").html(newData)
                     })
-                    $("#search-status").html(newData)
-                })
 
-                // Update start date
-                $("#push-start-date").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-start-date").val()
-                    db.collection("users").doc(dataID).update({
-                        startDate: newData
+                    // Update start date
+                    $("#push-start-date").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-start-date").val()
+                        db.collection("users").doc(dataID).update({
+                            startDate: newData
+                        })
+                        $("#search-start-date").html(newData)
                     })
-                    $("#search-start-date").html(newData)
-                })
 
-                // Update next evaluation
-                $("#push-next-eval").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-next-eval").val()
-                    db.collection("users").doc(dataID).update({
-                        nextEval: newData
+                    // Update next evaluation
+                    $("#push-next-eval").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-next-eval").val()
+                        db.collection("users").doc(dataID).update({
+                            nextEval: newData
+                        })
+                        $("#search-next-eval").html(newData)
                     })
-                    $("#search-next-eval").html(newData)
-                })
 
-                // Update salary
-                $("#push-salary").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-salary").val()
-                    db.collection("users").doc(dataID).update({
-                        salary: newData
+                    // Update salary
+                    $("#push-salary").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-salary").val()
+                        db.collection("users").doc(dataID).update({
+                            salary: newData
+                        })
+                        $("#search-salary").html(newData)
                     })
-                    $("#search-salary").html(newData)
-                })
 
-                // Update vacation time
-                $("#push-vacation-time").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-vacation-time").val()
-                    db.collection("users").doc(dataID).update({
-                        vacationTime: newData
+                    // Update vacation time
+                    $("#push-vacation-time").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-vacation-time").val()
+                        db.collection("users").doc(dataID).update({
+                            vacationTime: newData
+                        })
+                        $("#search-vacation-time").html(newData)
                     })
-                    $("#search-vacation-time").html(newData)
-                })
 
-                // Update title
-                $("#push-title").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-title").val()
-                    db.collection("users").doc(dataID).update({
-                        title: newData
+                    // Update title
+                    $("#push-title").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-title").val()
+                        db.collection("users").doc(dataID).update({
+                            title: newData
+                        })
+                        $("#search-job-title").html(newData)
                     })
-                    $("#search-job-title").html(newData)
-                })
 
-                // Update phone
-                $("#push-phone").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-phone").val()
-                    db.collection("users").doc(dataID).update({
-                        phone: newData
+                    // Update phone
+                    $("#push-phone").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-phone").val()
+                        db.collection("users").doc(dataID).update({
+                            phone: newData
+                        })
+                        $("#search-phone").html(newData)
                     })
-                    $("#search-phone").html(newData)
-                })
 
-                // Update email
-                $("#push-email").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-email").val()
-                    db.collection("users").doc(dataID).update({
-                        email: newData
+                    // Update email
+                    $("#push-email").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-email").val()
+                        db.collection("users").doc(dataID).update({
+                            email: newData
+                        })
+                        $("#search-email").html(newData)
                     })
-                    $("#search-email").html(newData)
-                })
 
-                // Update emergency contact
-                $("#push-emergency").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-emergency").val()
-                    db.collection("users").doc(dataID).update({
-                        emergency: newData
+                    // Update emergency contact
+                    $("#push-emergency").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-emergency").val()
+                        db.collection("users").doc(dataID).update({
+                            emergency: newData
+                        })
+                        $("#search-emergency").html(newData)
                     })
-                    $("#search-emergency").html(newData)
-                })
 
-                // Update health insurance
-                $("#push-health").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-health").val()
-                    db.collection("users").doc(dataID).update({
-                        eligibleForHealth: newData
+                    // Update health insurance
+                    $("#push-health").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-health").val()
+                        db.collection("users").doc(dataID).update({
+                            eligibleForHealth: newData
+                        })
+                        $("#search-health").html(newData)
                     })
-                    $("#search-health").html(newData)
-                })
 
-                // Update health accepted date
-                $("#push-health-date").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-health-date").val()
-                    db.collection("users").doc(dataID).update({
-                        healthAccepted: newData
+                    // Update health accepted date
+                    $("#push-health-date").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-health-date").val()
+                        db.collection("users").doc(dataID).update({
+                            healthAccepted: newData
+                        })
+                        $("#search-health-date").html(newData)
                     })
-                    $("#search-health-date").html(newData)
-                })
 
-                // Update insurance eligibility date
-                $("#push-health-eligible").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-health-eligible").val()
-                    db.collection("users").doc(dataID).update({
-                        healthEligible: newData
+                    // Update insurance eligibility date
+                    $("#push-health-eligible").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-health-eligible").val()
+                        db.collection("users").doc(dataID).update({
+                            healthEligible: newData
+                        })
+                        $("#search-health-eligible").html(newData)
                     })
-                    $("#search-health-eligible").html(newData)
-                })
 
-                // Update street
-                $("#push-street").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-street").val()
-                    db.collection("users").doc(dataID).update({
-                        street: newData
+                    // Update street
+                    $("#push-street").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-street").val()
+                        db.collection("users").doc(dataID).update({
+                            street: newData
+                        })
+                        $("#search-street").html(newData)
                     })
-                    $("#search-street").html(newData)
-                })
 
-                // Update city/state
-                $("#push-city").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-city").val()
-                    db.collection("users").doc(dataID).update({
-                        city: newData
+                    // Update city/state
+                    $("#push-city").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-city").val()
+                        db.collection("users").doc(dataID).update({
+                            city: newData
+                        })
+                        $("#search-city").html(newData)
                     })
-                    $("#search-city").html(newData)
-                })
 
-                // Update zip
-                $("#push-zip").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-zip").val()
-                    db.collection("users").doc(dataID).update({
-                        zip: newData
+                    // Update zip
+                    $("#push-zip").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-zip").val()
+                        db.collection("users").doc(dataID).update({
+                            zip: newData
+                        })
+                        $("#search-zip").html(newData)
                     })
-                    $("#search-zip").html(newData)
-                })
 
-                // Update health provider
-                $("#push-health-provider").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-health-provider").val()
-                    db.collection("users").doc(dataID).update({
-                        healthProvider: newData
+                    // Update health provider
+                    $("#push-health-provider").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-health-provider").val()
+                        db.collection("users").doc(dataID).update({
+                            healthProvider: newData
+                        })
+                        $("#search-health-provider").html(newData)
                     })
-                    $("#search-health-provider").html(newData)
-                })
 
-                // Update provider notes
-                $("#push-provider-notes").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-provider-notes").val()
-                    db.collection("users").doc(dataID).update({
-                        providerNotes: newData
+                    // Update provider notes
+                    $("#push-provider-notes").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-provider-notes").val()
+                        db.collection("users").doc(dataID).update({
+                            providerNotes: newData
+                        })
+                        $("#search-provider-notes").html(newData)
                     })
-                    $("#search-provider-notes").html(newData)
-                })
 
-                // Update AFLAC if accepted
-                $("#push-aflac-yes").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-aflac-yes").val()
-                    db.collection("users").doc(dataID).update({
-                        aflacYes: newData
+                    // Update AFLAC if accepted
+                    $("#push-aflac-yes").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-aflac-yes").val()
+                        db.collection("users").doc(dataID).update({
+                            aflacYes: newData
+                        })
+                        $("#search-aflac-yes").html(newData)
                     })
-                    $("#search-aflac-yes").html(newData)
-                })
 
-                // Update AFLAC if not elligible
-                $("#push-aflac-no").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-aflac-no").val()
-                    db.collection("users").doc(dataID).update({
-                        aflacNo: newData
+                    // Update AFLAC if not elligible
+                    $("#push-aflac-no").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-aflac-no").val()
+                        db.collection("users").doc(dataID).update({
+                            aflacNo: newData
+                        })
+                        $("#search-aflac-no").html(newData)
                     })
-                    $("#search-aflac-no").html(newData)
-                })
 
-                // Update last evaluation date
-                $("#push-lasteval-date").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-lasteval-date").val()
-                    db.collection("users").doc(dataID).update({
-                        lastEvalDate: newData
+                    // Update last evaluation date
+                    $("#push-lasteval-date").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-lasteval-date").val()
+                        db.collection("users").doc(dataID).update({
+                            lastEvalDate: newData
+                        })
+                        $("#search-lasteval-date").html(newData)
                     })
-                    $("#search-lasteval-date").html(newData)
-                })
 
-                // Update last evaluation score
-                $("#push-lasteval-score").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-lasteval-score").val()
-                    db.collection("users").doc(dataID).update({
-                        lastEvalScore: newData
+                    // Update last evaluation score
+                    $("#push-lasteval-score").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-lasteval-score").val()
+                        db.collection("users").doc(dataID).update({
+                            lastEvalScore: newData
+                        })
+                        $("#search-lasteval-score").html(newData)
                     })
-                    $("#search-lasteval-score").html(newData)
-                })
 
-                // Update 90 day eval
-                $("#push-90day").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-90day").val()
-                    db.collection("users").doc(dataID).update({
-                        nintyDay: newData
+                    // Update 90 day eval
+                    $("#push-90day").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-90day").val()
+                        db.collection("users").doc(dataID).update({
+                            nintyDay: newData
+                        })
+                        $("#search-90day").html(newData)
                     })
-                    $("#search-90day").html(newData)
-                })
 
-                // Update 6 month eval
-                $("#push-6month").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-6month").val()
-                    db.collection("users").doc(dataID).update({
-                        sixMonth: newData
+                    // Update 6 month eval
+                    $("#push-6month").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-6month").val()
+                        db.collection("users").doc(dataID).update({
+                            sixMonth: newData
+                        })
+                        $("#search-6month").html(newData)
                     })
-                    $("#search-6month").html(newData)
-                })
 
-                // Update 90 day review
-                $("#push-90day-review").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-90day-review").val()
-                    db.collection("users").doc(dataID).update({
-                        nintyDayReview: newData
+                    // Update 90 day review
+                    $("#push-90day-review").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-90day-review").val()
+                        db.collection("users").doc(dataID).update({
+                            nintyDayReview: newData
+                        })
+                        $("#search-90day-review").html(newData)
                     })
-                    $("#search-90day-review").html(newData)
-                })
 
-                // Update termination date
-                $("#push-term").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-term").val()
-                    db.collection("users").doc(dataID).update({
-                        term: newData
+                    // Update termination date
+                    $("#push-term").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-term").val()
+                        db.collection("users").doc(dataID).update({
+                            term: newData
+                        })
+                        $("#search-term").html(newData)
                     })
-                    $("#search-term").html(newData)
-                })
 
-                // Update eval notes
-                $("#push-eval-notes").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-eval-notes").val()
-                    db.collection("users").doc(dataID).update({
-                        evalNotes: newData
+                    // Update eval notes
+                    $("#push-eval-notes").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-eval-notes").val()
+                        db.collection("users").doc(dataID).update({
+                            evalNotes: newData
+                        })
+                        $("#search-eval-notes").html(newData)
                     })
-                    $("#search-eval-notes").html(newData)
-                })
 
-                // Update results notes
-                $("#push-results-notes").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-results-notes").val()
-                    db.collection("users").doc(dataID).update({
-                        resultsNotes: newData
+                    // Update results notes
+                    $("#push-results-notes").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-results-notes").val()
+                        db.collection("users").doc(dataID).update({
+                            resultsNotes: newData
+                        })
+                        $("#search-results-notes").html(newData)
                     })
-                    $("#search-results-notes").html(newData)
-                })
 
-                // Update 1st coaching date
-                $("#push-first-coaching-date").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-first-coaching-date").val()
-                    db.collection("users").doc(dataID).update({
-                        firstCoachingDate: newData
+                    // Update 1st coaching date
+                    $("#push-first-coaching-date").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-first-coaching-date").val()
+                        db.collection("users").doc(dataID).update({
+                            firstCoachingDate: newData
+                        })
+                        $("#search-first-coaching-date").html(newData)
                     })
-                    $("#search-first-coaching-date").html(newData)
-                })
 
-                // Update 1st coaching reason
-                $("#push-first-coaching-reason").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-first-coaching-reason").val()
-                    db.collection("users").doc(dataID).update({
-                        firstCoachingReason: newData
+                    // Update 1st coaching reason
+                    $("#push-first-coaching-reason").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-first-coaching-reason").val()
+                        db.collection("users").doc(dataID).update({
+                            firstCoachingReason: newData
+                        })
+                        $("#search-first-coaching-reason").html(newData)
                     })
-                    $("#search-first-coaching-reason").html(newData)
-                })
 
-                // Update 2nd coaching date
-                $("#push-second-coaching-date").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-second-coaching-date").val()
-                    db.collection("users").doc(dataID).update({
-                        secondCoachingDate: newData
+                    // Update 2nd coaching date
+                    $("#push-second-coaching-date").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-second-coaching-date").val()
+                        db.collection("users").doc(dataID).update({
+                            secondCoachingDate: newData
+                        })
+                        $("#search-second-coaching-date").html(newData)
                     })
-                    $("#search-second-coaching-date").html(newData)
-                })
 
-                // Update 2nd coaching reason
-                $("#push-second-coaching-reason").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-second-coaching-reason").val()
-                    db.collection("users").doc(dataID).update({
-                        secondCoachingReason: newData
+                    // Update 2nd coaching reason
+                    $("#push-second-coaching-reason").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-second-coaching-reason").val()
+                        db.collection("users").doc(dataID).update({
+                            secondCoachingReason: newData
+                        })
+                        $("#search-second-coaching-reason").html(newData)
                     })
-                    $("#search-second-coaching-reason").html(newData)
-                })
 
-                // Update 3rd coaching date
-                $("#push-third-coaching-date").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-third-coaching-date").val()
-                    db.collection("users").doc(dataID).update({
-                        thirdCoachingDate: newData
+                    // Update 3rd coaching date
+                    $("#push-third-coaching-date").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-third-coaching-date").val()
+                        db.collection("users").doc(dataID).update({
+                            thirdCoachingDate: newData
+                        })
+                        $("#search-third-coaching-date").html(newData)
                     })
-                    $("#search-third-coaching-date").html(newData)
-                })
 
-                // Update 3rd coaching reason
-                $("#push-third-coaching-reason").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-third-coaching-reason").val()
-                    db.collection("users").doc(dataID).update({
-                        thirdCoachingReason: newData
+                    // Update 3rd coaching reason
+                    $("#push-third-coaching-reason").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-third-coaching-reason").val()
+                        db.collection("users").doc(dataID).update({
+                            thirdCoachingReason: newData
+                        })
+                        $("#search-third-coaching-reason").html(newData)
                     })
-                    $("#search-third-coaching-reason").html(newData)
-                })
 
-                // Update disciplinary termination date
-                $("#push-disc-term-date").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-disc-term-date").val()
-                    db.collection("users").doc(dataID).update({
-                        discTermDate: newData
+                    // Update disciplinary termination date
+                    $("#push-disc-term-date").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-disc-term-date").val()
+                        db.collection("users").doc(dataID).update({
+                            discTermDate: newData
+                        })
+                        $("#search-disc-term-date").html(newData)
                     })
-                    $("#search-disc-term-date").html(newData)
-                })
 
-                // Update disciplinary termination reason
-                $("#push-disc-term-reason").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-disc-term-reason").val()
-                    db.collection("users").doc(dataID).update({
-                        discTermReason: newData
+                    // Update disciplinary termination reason
+                    $("#push-disc-term-reason").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-disc-term-reason").val()
+                        db.collection("users").doc(dataID).update({
+                            discTermReason: newData
+                        })
+                        $("#search-disc-term-reason").html(newData)
                     })
-                    $("#search-disc-term-reason").html(newData)
-                })
 
-                // Update vacation eligible date
-                $("#push-vacation-eligible-date").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-vacation-eligible-date").val()
-                    db.collection("users").doc(dataID).update({
-                        vacationEligibleDate: newData
+                    // Update vacation eligible date
+                    $("#push-vacation-eligible-date").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-vacation-eligible-date").val()
+                        db.collection("users").doc(dataID).update({
+                            vacationEligibleDate: newData
+                        })
+                        $("#search-vacation-eligible-date").html(newData)
                     })
-                    $("#search-vacation-eligible-date").html(newData)
-                })
 
-                // Update available vacation time
-                $("#push-available-vacation").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-available-vacation").val()
-                    db.collection("users").doc(dataID).update({
-                        availableVacation: newData
+                    // Update available vacation time
+                    $("#push-available-vacation").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-available-vacation").val()
+                        db.collection("users").doc(dataID).update({
+                            availableVacation: newData
+                        })
+                        $("#search-available-vacation").html(newData)
                     })
-                    $("#search-available-vacation").html(newData)
-                })
 
-                // Update vacation used YTD
-                $("#push-vacation-used").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-vacation-used").val()
-                    db.collection("users").doc(dataID).update({
-                        vacationUsed: newData
+                    // Update vacation used YTD
+                    $("#push-vacation-used").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-vacation-used").val()
+                        db.collection("users").doc(dataID).update({
+                            vacationUsed: newData
+                        })
+                        $("#search-vacation-used").html(newData)
                     })
-                    $("#search-vacation-used").html(newData)
-                })
 
-                // Update vacation renewal date
-                $("#push-vacation-renewal").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-vacation-renewal").val()
-                    db.collection("users").doc(dataID).update({
-                        vacationRenewal: newData
+                    // Update vacation renewal date
+                    $("#push-vacation-renewal").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-vacation-renewal").val()
+                        db.collection("users").doc(dataID).update({
+                            vacationRenewal: newData
+                        })
+                        $("#search-vacation-renewal").html(newData)
                     })
-                    $("#search-vacation-renewal").html(newData)
-                })
 
-                // Update has read policies
-                $("#push-has-read").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-has-read").val()
-                    db.collection("users").doc(dataID).update({
-                        has_read: newData
+                    // Update has read policies
+                    $("#push-has-read").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-has-read").val()
+                        db.collection("users").doc(dataID).update({
+                            has_read: newData
+                        })
+                        $("#search-has-read").html(newData)
                     })
-                    $("#search-has-read").html(newData)
-                })
 
-                // Update absence date
-                $("#push-absence-date").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-absence-date").val()
-                    db.collection("users").doc(dataID).update({
-                        date: firebase.firestore.FieldValue.arrayUnion(newData)
+                    // Update absence date
+                    $("#push-absence-date").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-absence-date").val()
+                        db.collection("users").doc(dataID).update({
+                            date: firebase.firestore.FieldValue.arrayUnion(newData)
+                        })
+                        $("#put-date-here").empty()
+                        $("#update-absence-date").val("")
+                        showDateTracking(doc)
                     })
-                    $("#put-date-here").empty()
-                    $("#update-absence-date").val("")
-                    showDateTracking(doc)
-                })
 
-                // Update absence reason
-                $("#push-absence-reason").on("click", (e) => {
-                    e.preventDefault()
-                    var dataID = document.querySelector("#search-name").getAttribute("data-id")
-                    var newData = $("#update-absence-reason").val()
-                    db.collection("users").doc(dataID).update({
-                        reason: firebase.firestore.FieldValue.arrayUnion(newData)
+                    // Update absence reason
+                    $("#push-absence-reason").on("click", (e) => {
+                        e.preventDefault()
+                        var dataID = document.querySelector("#search-name").getAttribute("data-id")
+                        var newData = $("#update-absence-reason").val()
+                        db.collection("users").doc(dataID).update({
+                            reason: firebase.firestore.FieldValue.arrayUnion(newData)
+                        })
+                        $("#put-reason-here").empty()
+                        $("#update-absence-reason").val("")
+                        showReasonTracking(doc)
                     })
-                    $("#put-reason-here").empty()
-                    $("#update-absence-reason").val("")
-                    showReasonTracking(doc)
-                })
                 })
 
                 // Show edit button and forms
@@ -860,7 +851,7 @@ auth.onAuthStateChanged(user => {
 
 auth.onAuthStateChanged(user => {
     if (user) {
-        $("#check-btn").on("click", function() {
+        $("#check-btn").on("click", function () {
             var checkTheCheckbox = document.getElementById("has-read-box").checked
             if (checkTheCheckbox === true) {
                 alert("Thank you for reading all Innevape Policies!")
@@ -886,37 +877,37 @@ var mobileBtn = document.getElementById("mobile-btn")
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
+btn.onclick = function () {
+    modal.style.display = "block";
 }
 
-mobileBtn.onclick = function() {
+mobileBtn.onclick = function () {
     modal.style.display = "block";
-  }
+}
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span.onclick = function () {
+    modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 
 // Check if policies have been read
 var hasRead = ["data"]
 
-$(document).ready(function() {
+$(document).ready(function () {
     if (localStorage.getItem("readDocuments") === null) {
         localStorage.setItem("readDocuments", JSON.stringify(hasRead))
     }
 })
 
 // Check if array already has string
-$("#accident").on("click", function() {
+$("#accident").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -928,7 +919,7 @@ $("#accident").on("click", function() {
     }
 })
 
-$("#discrimination").on("click", function() {
+$("#discrimination").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -940,7 +931,7 @@ $("#discrimination").on("click", function() {
     }
 })
 
-$("#attendance").on("click", function() {
+$("#attendance").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -952,7 +943,7 @@ $("#attendance").on("click", function() {
     }
 })
 
-$("#ethics").on("click", function() {
+$("#ethics").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -964,7 +955,7 @@ $("#ethics").on("click", function() {
     }
 })
 
-$("#communication").on("click", function() {
+$("#communication").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -976,7 +967,7 @@ $("#communication").on("click", function() {
     }
 })
 
-$("#travel").on("click", function() {
+$("#travel").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -988,7 +979,7 @@ $("#travel").on("click", function() {
     }
 })
 
-$("#disciplinary").on("click", function() {
+$("#disciplinary").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1000,7 +991,7 @@ $("#disciplinary").on("click", function() {
     }
 })
 
-$("#background").on("click", function() {
+$("#background").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1012,7 +1003,7 @@ $("#background").on("click", function() {
     }
 })
 
-$("#break").on("click", function() {
+$("#break").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1024,7 +1015,7 @@ $("#break").on("click", function() {
     }
 })
 
-$("#phone").on("click", function() {
+$("#phone").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1036,7 +1027,7 @@ $("#phone").on("click", function() {
     }
 })
 
-$("#relatives").on("click", function() {
+$("#relatives").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1048,7 +1039,7 @@ $("#relatives").on("click", function() {
     }
 })
 
-$("#equal").on("click", function() {
+$("#equal").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1060,7 +1051,7 @@ $("#equal").on("click", function() {
     }
 })
 
-$("#fraternization").on("click", function() {
+$("#fraternization").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1072,7 +1063,7 @@ $("#fraternization").on("click", function() {
     }
 })
 
-$("#holiday").on("click", function() {
+$("#holiday").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1084,7 +1075,7 @@ $("#holiday").on("click", function() {
     }
 })
 
-$("#conduct").on("click", function() {
+$("#conduct").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1096,7 +1087,7 @@ $("#conduct").on("click", function() {
     }
 })
 
-$("#internet").on("click", function() {
+$("#internet").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1108,7 +1099,7 @@ $("#internet").on("click", function() {
     }
 })
 
-$("#jury").on("click", function() {
+$("#jury").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1120,7 +1111,7 @@ $("#jury").on("click", function() {
     }
 })
 
-$("#new-hire").on("click", function() {
+$("#new-hire").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1132,7 +1123,7 @@ $("#new-hire").on("click", function() {
     }
 })
 
-$("#open-door").on("click", function() {
+$("#open-door").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1144,7 +1135,7 @@ $("#open-door").on("click", function() {
     }
 })
 
-$("#performance").on("click", function() {
+$("#performance").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1156,7 +1147,7 @@ $("#performance").on("click", function() {
     }
 })
 
-$("#probationary").on("click", function() {
+$("#probationary").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1168,7 +1159,7 @@ $("#probationary").on("click", function() {
     }
 })
 
-$("#prog-discipline").on("click", function() {
+$("#prog-discipline").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1180,7 +1171,7 @@ $("#prog-discipline").on("click", function() {
     }
 })
 
-$("#seperation").on("click", function() {
+$("#seperation").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1192,7 +1183,7 @@ $("#seperation").on("click", function() {
     }
 })
 
-$("#social").on("click", function() {
+$("#social").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1204,7 +1195,7 @@ $("#social").on("click", function() {
     }
 })
 
-$("#substance").on("click", function() {
+$("#substance").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1216,7 +1207,7 @@ $("#substance").on("click", function() {
     }
 })
 
-$("#development").on("click", function() {
+$("#development").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1228,7 +1219,7 @@ $("#development").on("click", function() {
     }
 })
 
-$("#pto").on("click", function() {
+$("#pto").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1240,7 +1231,7 @@ $("#pto").on("click", function() {
     }
 })
 
-$("#violence").on("click", function() {
+$("#violence").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1252,7 +1243,7 @@ $("#violence").on("click", function() {
     }
 })
 
-$("#retaliation").on("click", function() {
+$("#retaliation").on("click", function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log(hasRead + "--------------------------")
@@ -1264,7 +1255,7 @@ $("#retaliation").on("click", function() {
     }
 })
 
-var showCheckbox = function() {
+var showCheckbox = function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
     console.log("Has Read: " + hasRead)
@@ -1273,20 +1264,3 @@ var showCheckbox = function() {
         $("#policies-checkbox").css("display", "block")
     }
 }
-
-// $("#clear-storage").on("click", function() {
-//     localStorage.clear()
-//     alert("Local Storage Erased!")
-// })
-
-// Old firebase rules in case I fuck up
-
-// rules_version = '2';
-// service cloud.firestore {
-//   match /databases/{database}/documents {
-//     match /{document=**} {
-//       allow read;
-//       allow write: if request.auth.uid == "x0Z60AxS46W3fVjF9nWzgFVHsI52";
-//     }
-//   }
-// }

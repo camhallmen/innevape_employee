@@ -1,107 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Search</title>
-    <!-- Favicon -->
-    <link rel="icon" type="img/jpg" href="assets/images/circle_logo_100.png">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Search</title>
+  <!-- Favicon -->
+  <link rel="icon" type="img/jpg" href="assets/images/circle_logo_100.png">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/stylesheets/stylesheet.css">
-    <!-- Print CSS -->
-    <link href="assets/stylesheets/print.css" type="text/css" rel="stylesheet" media="print">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/stylesheets/stylesheet.css">
+  <!-- Print CSS -->
+  <link href="assets/stylesheets/print.css" type="text/css" rel="stylesheet" media="print">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
+
 <body>
 
-    <!-- Firebase -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+  <!-- Firebase -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyBq97xMZ8uH6yOOZqtBd2gfGD7BVfmDhzM",
-            authDomain: "innevape-employee.firebaseapp.com",
-            databaseURL: "https://innevape-employee.firebaseio.com",
-            projectId: "innevape-employee",
-            storageBucket: "",
-            messagingSenderId: "595220304478",
-            appId: "1:595220304478:web:fc9aaccd1580c1210f9acf"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBq97xMZ8uH6yOOZqtBd2gfGD7BVfmDhzM",
+      authDomain: "innevape-employee.firebaseapp.com",
+      databaseURL: "https://innevape-employee.firebaseio.com",
+      projectId: "innevape-employee",
+      storageBucket: "",
+      messagingSenderId: "595220304478",
+      appId: "1:595220304478:web:fc9aaccd1580c1210f9acf"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 
-        // Firebase References
-        const auth = firebase.auth()
-        const db = firebase.firestore()
-    </script>
+    // Firebase References
+    const auth = firebase.auth()
+    const db = firebase.firestore()
+  </script>
 
-    <div id="page-container">
+  <div id="page-container">
 
-      <div id="content-wrap">
-    
-  <!-- New navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="index.html"><img src="assets/images/whitecirclelogo.png" alt="Innevape Logo"></a>
-      <button id="mobile-btn" class="btn btn-primary hide-full">Log In/Out</button>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle hide-mobile" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Navigation
-            </a>
-            <a href="employee_information.html" class="dropdown-item hide-full white-txt">My Info</a>
-            <a href="employee_policies.html" class="dropdown-item hide-full white-txt">Policies</a>
-            <a href="employee_news.html" class="dropdown-item hide-full white-txt">News</a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="employee_information.html">Employee Information</a>
-              <a class="dropdown-item" href="employee_policies.html">Employee Policies</a>
-              <a class="dropdown-item" href="employee_news.html">Employee News</a>
-              <a class="dropdown-item" href="login.html" id="go-to-updates">Write Update</a>
-              <a class="dropdown-item" href="search.html" id="go-to-search">Search Database</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <a id="greeting"></a>
-      <button id="myBtn" class="btn btn-primary hide-mobile">Log In/Out</button>
-    </nav>
-  
-    <br>
-  
-  <!-- The Modal -->
-  <div id="myModal" class="modal">
+    <div id="content-wrap">
 
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class="center">
-        <h1 class="display-4"><strong id="modal-title">Login</strong></h1>
+      <!-- New navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html"><img src="assets/images/whitecirclelogo.png" alt="Innevape Logo"></a>
+        <button id="mobile-btn" class="btn btn-primary hide-full">Log In/Out</button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle hide-mobile" href="#" id="navbarDropdownMenuLink" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Navigation
+              </a>
+              <a href="employee_information.html" class="dropdown-item hide-full white-txt">My Info</a>
+              <a href="employee_policies.html" class="dropdown-item hide-full white-txt">Policies</a>
+              <a href="employee_news.html" class="dropdown-item hide-full white-txt">News</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="employee_information.html">Employee Information</a>
+                <a class="dropdown-item" href="employee_policies.html">Employee Policies</a>
+                <a class="dropdown-item" href="employee_news.html">Employee News</a>
+                <a class="dropdown-item" href="login.html" id="go-to-updates">Write Update</a>
+                <a class="dropdown-item" href="search.html" id="go-to-search">Search Database</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <a id="greeting"></a>
+        <button id="myBtn" class="btn btn-primary hide-mobile">Log In/Out</button>
+      </nav>
+
+      <br>
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="center">
+            <h1 class="display-4"><strong id="modal-title">Login</strong></h1>
             <br>
             <form id="login-form">
-                    Email:<br>
-                    <input type="email" id="login-email" required><br>
-                    <br>
-                    Password:<br>
-                    <input type="password" id="login-password" required><br>
-                    <br>
-                    <div class="center-captcha">
-                        <div class="g-recaptcha" data-sitekey="6LfzLLsUAAAAAH4EGSDG59epWiOr9lVvbRKk4ert" data-callback="recaptchaCallback" 
-                        style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
-                      </div>
-                    <br>
-                    <input type="submit" class="btn btn-primary" id="submit-btn" value="Submit" disabled>
-                  </form>
+              Email:<br>
+              <input type="email" id="login-email" required><br>
+              <br>
+              Password:<br>
+              <input type="password" id="login-password" required><br>
+              <br>
+              <div class="center-captcha">
+                <div class="g-recaptcha" data-sitekey="6LfzLLsUAAAAAH4EGSDG59epWiOr9lVvbRKk4ert"
+                  data-callback="recaptchaCallback"
+                  style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;">
+                </div>
+              </div>
+              <br>
+              <input type="submit" class="btn btn-primary" id="submit-btn" value="Submit" disabled>
+            </form>
             <br>
             <a href="signup.html" id="signup-link">Sign Up</a>
             <hr class="my-4">
@@ -110,12 +116,12 @@
               <br>
               <a href="#" id="logout">Logout</a>
             </div>
+          </div>
         </div>
-      </div>
-    
+
       </div>
 
-  <div class="jumbotron login-card">
+      <div class="jumbotron login-card">
         <h1 class="display-4"><strong>Search Database</strong></h1>
         <br class="hide-br">
         <form id="add-message-form">
@@ -137,391 +143,382 @@
           <a href="#" id="hide-name-reference">Hide</a>
         </div>
         <div id="display-admin-search">
-            <hr class="my-4" id="hide-print2">
-            <h2 style="text-decoration: underline">Basic Info</h2>
-            <br>
-            <!-- Start Columns --> <!-- COME BACK AND FIX FORMATTING!!! -->
-            <div class="container">
+          <hr class="my-4" id="hide-print2">
+          <h2 style="text-decoration: underline">Basic Info</h2>
+          <br>
+          <!-- Start Columns -->
+          <div class="container">
             <div class="row">
-            <div class="col-sm-6">
-            <h3 class="info-heading">Employee Name:</h3>
-            <p><strong class="make-result-white" id="search-name"></strong></p>
-            <form class="edit-form">
-                <input type="text" id="update-name">
-                <button class="btn btn-primary" id="push-name">Push Update</button> 
-            </form>
-            <hr>
-            <h3 class="info-heading">Employee Status:</h3>
-            <p><strong class="make-result-white" id="search-status"></strong></p>
-            <form class="edit-form">
-                <input type="text" id="update-status">
-                <button class="btn btn-primary" id="push-status">Push Update</button> 
-            </form>
-            <hr>
-            <h3 class="info-heading">Start Date:</h3>
-            <p><strong class="make-result-white" id="search-start-date"></strong></p>
-            <form class="edit-form">
-                <input type="text" id="update-start-date">
-                <button class="btn btn-primary" id="push-start-date">Push Update</button> 
-            </form>
-            <hr>
-            <h3 class="info-heading">Pay Rate:</h3>
-            <p><strong class="make-result-white" id="search-salary"></strong></p>
-            <form class="edit-form">
-                <input type="text" id="update-salary">
-                <button class="btn btn-primary" id="push-salary">Push Update</button> 
-            </form>
-            <hr>
-            <h3 class="info-heading">Address:</h3>
-        <p>Street: <strong class="make-result-white" id="search-street"></strong></p>
-        <p>City/State: <strong class="make-result-white" id="search-city"></strong></p>
-        <p>Zip: <strong class="make-result-white" id="search-zip"></strong></p>
-        <form class="edit-form">
-          <input type="text" id="update-street" placeholder="123 Placeholder Ave.">
-          <button class="btn btn-primary" id="push-street">Push Update</button> <br>
-          <br>
-          <input type="text" id="update-city" placeholder="Hudson, FL">
-          <button class="btn btn-primary" id="push-city">Push Update</button> <br>
-          <br>
-          <input type="text" id="update-zip" placeholder="32817">
-          <button class="btn btn-primary" id="push-zip">Push Update</button>
-        </form>
-        <hr>
-        </div> <!-- Col 1-6 End -->
-        <div class="col-sm-6">
-            <h3 class="info-heading">Employee Phone:</h3>
-            <p><strong class="make-result-white" id="search-phone"></strong></p>
-            <form class="edit-form">
-                <input type="text" id="update-phone">
-                <button class="btn btn-primary" id="push-phone">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">Employee Email:</h3>
-            <p><strong class="make-result-white" id="search-email"></strong></p>
-            <form class="edit-form">
-                <input type="text" id="update-email">
-                <button class="btn btn-primary" id="push-email">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">Emergency Contact:</h3>
-            <p><strong class="make-result-white" id="search-emergency"></strong></p>
-            <form class="edit-form">
-                <input type="text" id="update-emergency">
-                <button class="btn btn-primary" id="push-emergency">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">Job Title:</h3>
-            <p><strong class="make-result-white" id="search-job-title"></strong></p>
-            <form class="edit-form">
-                <input type="text" id="update-title">
-                <button class="btn btn-primary" id="push-title">Push Update</button> 
-            </form>
-            <hr>
-            <h3 class="info-heading">Has Read All Policies:</h3>
-            <p><strong class="make-result-white" id="search-has-read"></strong></p> <br>
-            <form class="edit-form">
-                <input type="text" id="update-has-read">
-                <button class="btn btn-primary" id="push-has-read">Push Update</button> 
-            </form>
-            <hr>
-        </div> <!-- col 7-12 end -->
-        </div> <!-- Row End -->
-        <hr class="my-4">
-        <h2 style="text-decoration: underline">Insurance Info</h2>
-        <br>
-        <div class="row">
-          <div class="col-sm-6">
-            <h3 class="info-heading">Eligible for Health Insurance:</h3>
-            <p><strong class="make-result-white" id="search-health"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-health">
-              <button class="btn btn-primary" id="push-health">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">Healthcare Provider:</h3>
-            <p><strong class="make-result-white" id="search-health-provider"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-health-provider">
-              <button class="btn btn-primary" id="push-health-provider">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">Provider Notes:</h3>
-            <p><strong class="make-result-white" id="search-provider-notes"></strong></p>
-            <form class="edit-form">
-              <textarea rows="5" cols="40" id="update-provider-notes"></textarea> <br>
-              <button class="btn btn-primary" id="push-provider-notes">Push Update</button>
-            </form>
-            <hr>
-          </div>
-          <div class="col-sm-6">
-            <h3 class="info-heading">If yes, date accepted:</h3>
-            <p><strong class="make-result-white" id="search-health-date"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-health-date">
-              <button class="btn btn-primary" id="push-health-date">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">If no, date eligible:</h3>
-            <p><strong class="make-result-white" id="search-health-eligible"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-health-eligible">
-              <button class="btn btn-primary" id="push-health-eligible">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">AFLAC:</h3>
-            <p>If yes, date accepted: <strong class="make-result-white" id="search-aflac-yes"></strong></p>
-            <p>If no, date eligible: <strong class="make-result-white" id="search-aflac-no"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-aflac-yes" placeholder="Date Accepted">
-              <button class="btn btn-primary" id="push-aflac-yes">Push Update</button>
-              <br>
-              <br>
-              <input type="text" id="update-aflac-no" placeholder="Date Eligible">
-              <button class="btn btn-primary" id="push-aflac-no">Push Update</button>
-            </form>
-            <hr>
-          </div>
-        </div>
-        <hr class="my-4">
-        <h2 style="text-decoration: underline">Evaluations</h2>
-        <br>
-        <div class="row">
-          <div class="col-sm-6">
-            <h3 class="info-heading">Date of Last Evaluation:</h3>
-            <p><strong class="make-result-white" id="search-lasteval-date"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-lasteval-date">
-              <button class="btn btn-primary" id="push-lasteval-date">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">New Hires:</h3>
-            <p>90 Day Eval if Applicable: <strong class="make-result-white" id="search-90day"></strong></p>
-            <p>6 Month Eval if Applicable: <strong class="make-result-white" id="search-6month"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-90day" placeholder="90 Day Eval Date">
-              <button class="btn btn-primary" id="push-90day">Push Update</button>
-              <br>
-              <br>
-              <input type="text" id="update-6month" placeholder="6 Month Eval Date">
-              <button class="btn btn-primary" id="push-6month">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">Disciplinary Eval:</h3>
-            <p>90 Day Review: <strong class="make-result-white" id="search-90day-review"></strong></p>
-            <p>If result is Term: <strong class="make-result-white" id="search-term"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-90day-review" placeholder="90 Day Review Date">
-              <button class="btn btn-primary" id="push-90day-review">Push Update</button>
-              <br>
-              <br>
-              <input type="text" id="update-term" placeholder="Termination Date">
-              <button class="btn btn-primary" id="push-term">Push Update</button>
-            </form>
-            <hr>
-          </div>
-          <div class="col-sm-6">
-            <h3 class="info-heading">Eval Score:</h3>
-            <p><strong class="make-result-white" id="search-lasteval-score"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-lasteval-score">
-              <button class="btn btn-primary" id="push-lasteval-score">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">Eval Notes:</h3>
-            <p><strong class="make-result-white" id="search-eval-notes"></strong></p>
-            <form class="edit-form">
-              <textarea rows="5" cols="40" id="update-eval-notes"></textarea> <br>
-              <button class="btn btn-primary" id="push-eval-notes">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">Results:</h3>
-            <p><strong class="make-result-white" id="search-results-notes"></strong></p>
-            <form class="edit-form">
-              <textarea rows="5" cols="40" id="update-results-notes"></textarea> <br>
-              <button class="btn btn-primary" id="push-results-notes">Push Update</button>
-            </form>
-            <hr>
-          </div>
-        </div>
-        <hr class="my-4">
-        <h2 style="text-decoration: underline">Disciplinary Actions</h2>
-        <br>
-        <div class="row">
-          <div class="col-sm-6">
-            <h3 class="info-heading">1st Coaching:</h3>
-            <p>Date: <strong class="make-result-white" id="search-first-coaching-date"></strong></p>
-            <p>Reason: <strong class="make-result-white" id="search-first-coaching-reason"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-first-coaching-date" placeholder="1st Coaching Date">
-              <button class="btn btn-primary" id="push-first-coaching-date">Push Update</button>
-              <br>
-              <br>
-              <input type="text" id="update-first-coaching-reason" placeholder="1st Coaching Reason">
-              <button class="btn btn-primary" id="push-first-coaching-reason">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">2nd Coaching:</h3>
-            <p>Date: <strong class="make-result-white" id="search-second-coaching-date"></strong></p>
-            <p>Reason: <strong class="make-result-white" id="search-second-coaching-reason"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-second-coaching-date" placeholder="2nd Coaching Date">
-              <button class="btn btn-primary" id="push-second-coaching-date">Push Update</button>
-              <br>
-              <br>
-              <input type="text" id="update-second-coaching-reason" placeholder="2nd Coaching Reason">
-              <button class="btn btn-primary" id="push-second-coaching-reason">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">3rd Coaching:</h3>
-            <p>Date: <strong class="make-result-white" id="search-third-coaching-date"></strong></p>
-            <p>Reason: <strong class="make-result-white" id="search-third-coaching-reason"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-third-coaching-date" placeholder="3rd Coaching Date">
-              <button class="btn btn-primary" id="push-third-coaching-date">Push Update</button>
-              <br>
-              <br>
-              <input type="text" id="update-third-coaching-reason" placeholder="3rd Coaching Reason">
-              <button class="btn btn-primary" id="push-third-coaching-reason">Push Update</button>
-            </form>
-            <hr>
-          </div>
-          <div class="col-sm-6">
-            <h3 class="info-heading">Termination:</h3>
-            <p>Date: <strong class="make-result-white" id="search-disc-term-date"></strong></p>
-            <p>Reason:</p>
-            <strong class="make-result-white" id="search-disc-term-reason"></strong>
+              <div class="col-sm-6">
+                <h3 class="info-heading">Employee Name:</h3>
+                <p><strong class="make-result-white" id="search-name"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-name">
+                  <button class="btn btn-primary" id="push-name">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Employee Status:</h3>
+                <p><strong class="make-result-white" id="search-status"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-status">
+                  <button class="btn btn-primary" id="push-status">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Start Date:</h3>
+                <p><strong class="make-result-white" id="search-start-date"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-start-date">
+                  <button class="btn btn-primary" id="push-start-date">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Pay Rate:</h3>
+                <p><strong class="make-result-white" id="search-salary"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-salary">
+                  <button class="btn btn-primary" id="push-salary">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Address:</h3>
+                <p>Street: <strong class="make-result-white" id="search-street"></strong></p>
+                <p>City/State: <strong class="make-result-white" id="search-city"></strong></p>
+                <p>Zip: <strong class="make-result-white" id="search-zip"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-street" placeholder="123 Placeholder Ave.">
+                  <button class="btn btn-primary" id="push-street">Push Update</button> <br>
+                  <br>
+                  <input type="text" id="update-city" placeholder="Hudson, FL">
+                  <button class="btn btn-primary" id="push-city">Push Update</button> <br>
+                  <br>
+                  <input type="text" id="update-zip" placeholder="32817">
+                  <button class="btn btn-primary" id="push-zip">Push Update</button>
+                </form>
+                <hr>
+              </div> <!-- Col 1-6 End -->
+              <div class="col-sm-6">
+                <h3 class="info-heading">Employee Phone:</h3>
+                <p><strong class="make-result-white" id="search-phone"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-phone">
+                  <button class="btn btn-primary" id="push-phone">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Employee Email:</h3>
+                <p><strong class="make-result-white" id="search-email"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-email">
+                  <button class="btn btn-primary" id="push-email">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Emergency Contact:</h3>
+                <p><strong class="make-result-white" id="search-emergency"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-emergency">
+                  <button class="btn btn-primary" id="push-emergency">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Job Title:</h3>
+                <p><strong class="make-result-white" id="search-job-title"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-title">
+                  <button class="btn btn-primary" id="push-title">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Has Read All Policies:</h3>
+                <p><strong class="make-result-white" id="search-has-read"></strong></p> <br>
+                <form class="edit-form">
+                  <input type="text" id="update-has-read">
+                  <button class="btn btn-primary" id="push-has-read">Push Update</button>
+                </form>
+                <hr>
+              </div> <!-- col 7-12 end -->
+            </div> <!-- Row End -->
+            <hr class="my-4">
+            <h2 style="text-decoration: underline">Insurance Info</h2>
             <br>
-            <br>
-            <form class="edit-form">
-              <input type="text" id="update-disc-term-date" placeholder="Termination Date">
-              <button class="btn btn-primary" id="push-disc-term-date">Push Update</button>
-              <br>
-              <br>
-              <textarea rows="5" cols="40" id="update-disc-term-reason" placeholder="Termination Reason"></textarea> <br>
-              <button class="btn btn-primary" id="push-disc-term-reason">Push Update</button>
-            </form>
-            <hr>
-          </div>
-        </div>
-        <hr class="my-4">
-        <h2 style="text-decoration: underline">Vacation Days</h2>
-        <br>
-        <div class="row">
-          <div class="col-sm-6">
-            <h3 class="info-heading">Date of Eligibility:</h3>
-            <p><strong class="make-result-white" id="search-vacation-eligible-date"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-vacation-eligible-date">
-              <button class="btn btn-primary" id="push-vacation-eligible-date">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">Available Vacation Days:</h3>
-            <p><strong class="make-result-white" id="search-available-vacation"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-available-vacation">
-              <button class="btn btn-primary" id="push-available-vacation">Push Update</button>
-            </form>
-            <hr>
-          </div>
-          <div class="col-sm-6">
-            <!-- <h3 class="info-heading">YTD Absence Tracking:</h3>
-            <br>
-            <div class="col-sm-3">
-              <h4>Date:</h4>
-              <br>
-              <div id="put-date-here"></div>
-              <br>
-            </div>
-            <div class="col-sm-3">
-              <h4>Reason:</h4>
-              <br>
-              <div id="put-reason-here"></div>
-              <br>
-            </div> -->
-            <h3 class="info-heading">Vacation Renewal Date:</h3>
-            <p><strong class="make-result-white" id="search-vacation-renewal"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-vacation-renewal">
-              <button class="btn btn-primary" id="push-vacation-renewal">Push Update</button>
-            </form>
-            <hr>
-            <h3 class="info-heading">Vacation Days Used YTD:</h3>
-            <p><strong class="make-result-white" id="search-vacation-used"></strong></p>
-            <form class="edit-form">
-              <input type="text" id="update-vacation-used">
-              <button class="btn btn-primary" id="push-vacation-used">Push Update</button>
-            </form>
-            <hr>
-          </div>
-        </div>
-        <hr class="my-4">
-        <h2 style="text-decoration: underline">Absence Tracker</h2>
-        <br>
-        <div class="row">
-          <div class="col-sm-6">
-            <h3 class="info-heading">Date:</h3>
-              <br>
-              <div id="date-container">
-              <div id="put-date-here"></div>
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="info-heading">Eligible for Health Insurance:</h3>
+                <p><strong class="make-result-white" id="search-health"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-health">
+                  <button class="btn btn-primary" id="push-health">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Healthcare Provider:</h3>
+                <p><strong class="make-result-white" id="search-health-provider"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-health-provider">
+                  <button class="btn btn-primary" id="push-health-provider">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Provider Notes:</h3>
+                <p><strong class="make-result-white" id="search-provider-notes"></strong></p>
+                <form class="edit-form">
+                  <textarea rows="5" cols="40" id="update-provider-notes"></textarea> <br>
+                  <button class="btn btn-primary" id="push-provider-notes">Push Update</button>
+                </form>
+                <hr>
               </div>
-              <br>
-              <form class="edit-form">
+              <div class="col-sm-6">
+                <h3 class="info-heading">If yes, date accepted:</h3>
+                <p><strong class="make-result-white" id="search-health-date"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-health-date">
+                  <button class="btn btn-primary" id="push-health-date">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">If no, date eligible:</h3>
+                <p><strong class="make-result-white" id="search-health-eligible"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-health-eligible">
+                  <button class="btn btn-primary" id="push-health-eligible">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">AFLAC:</h3>
+                <p>If yes, date accepted: <strong class="make-result-white" id="search-aflac-yes"></strong></p>
+                <p>If no, date eligible: <strong class="make-result-white" id="search-aflac-no"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-aflac-yes" placeholder="Date Accepted">
+                  <button class="btn btn-primary" id="push-aflac-yes">Push Update</button>
+                  <br>
+                  <br>
+                  <input type="text" id="update-aflac-no" placeholder="Date Eligible">
+                  <button class="btn btn-primary" id="push-aflac-no">Push Update</button>
+                </form>
+                <hr>
+              </div>
+            </div>
+            <hr class="my-4">
+            <h2 style="text-decoration: underline">Evaluations</h2>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="info-heading">Date of Last Evaluation:</h3>
+                <p><strong class="make-result-white" id="search-lasteval-date"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-lasteval-date">
+                  <button class="btn btn-primary" id="push-lasteval-date">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">New Hires:</h3>
+                <p>90 Day Eval if Applicable: <strong class="make-result-white" id="search-90day"></strong></p>
+                <p>6 Month Eval if Applicable: <strong class="make-result-white" id="search-6month"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-90day" placeholder="90 Day Eval Date">
+                  <button class="btn btn-primary" id="push-90day">Push Update</button>
+                  <br>
+                  <br>
+                  <input type="text" id="update-6month" placeholder="6 Month Eval Date">
+                  <button class="btn btn-primary" id="push-6month">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Disciplinary Eval:</h3>
+                <p>90 Day Review: <strong class="make-result-white" id="search-90day-review"></strong></p>
+                <p>If result is Term: <strong class="make-result-white" id="search-term"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-90day-review" placeholder="90 Day Review Date">
+                  <button class="btn btn-primary" id="push-90day-review">Push Update</button>
+                  <br>
+                  <br>
+                  <input type="text" id="update-term" placeholder="Termination Date">
+                  <button class="btn btn-primary" id="push-term">Push Update</button>
+                </form>
+                <hr>
+              </div>
+              <div class="col-sm-6">
+                <h3 class="info-heading">Eval Score:</h3>
+                <p><strong class="make-result-white" id="search-lasteval-score"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-lasteval-score">
+                  <button class="btn btn-primary" id="push-lasteval-score">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Eval Notes:</h3>
+                <p><strong class="make-result-white" id="search-eval-notes"></strong></p>
+                <form class="edit-form">
+                  <textarea rows="5" cols="40" id="update-eval-notes"></textarea> <br>
+                  <button class="btn btn-primary" id="push-eval-notes">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Results:</h3>
+                <p><strong class="make-result-white" id="search-results-notes"></strong></p>
+                <form class="edit-form">
+                  <textarea rows="5" cols="40" id="update-results-notes"></textarea> <br>
+                  <button class="btn btn-primary" id="push-results-notes">Push Update</button>
+                </form>
+                <hr>
+              </div>
+            </div>
+            <hr class="my-4">
+            <h2 style="text-decoration: underline">Disciplinary Actions</h2>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="info-heading">1st Coaching:</h3>
+                <p>Date: <strong class="make-result-white" id="search-first-coaching-date"></strong></p>
+                <p>Reason: <strong class="make-result-white" id="search-first-coaching-reason"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-first-coaching-date" placeholder="1st Coaching Date">
+                  <button class="btn btn-primary" id="push-first-coaching-date">Push Update</button>
+                  <br>
+                  <br>
+                  <input type="text" id="update-first-coaching-reason" placeholder="1st Coaching Reason">
+                  <button class="btn btn-primary" id="push-first-coaching-reason">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">2nd Coaching:</h3>
+                <p>Date: <strong class="make-result-white" id="search-second-coaching-date"></strong></p>
+                <p>Reason: <strong class="make-result-white" id="search-second-coaching-reason"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-second-coaching-date" placeholder="2nd Coaching Date">
+                  <button class="btn btn-primary" id="push-second-coaching-date">Push Update</button>
+                  <br>
+                  <br>
+                  <input type="text" id="update-second-coaching-reason" placeholder="2nd Coaching Reason">
+                  <button class="btn btn-primary" id="push-second-coaching-reason">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">3rd Coaching:</h3>
+                <p>Date: <strong class="make-result-white" id="search-third-coaching-date"></strong></p>
+                <p>Reason: <strong class="make-result-white" id="search-third-coaching-reason"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-third-coaching-date" placeholder="3rd Coaching Date">
+                  <button class="btn btn-primary" id="push-third-coaching-date">Push Update</button>
+                  <br>
+                  <br>
+                  <input type="text" id="update-third-coaching-reason" placeholder="3rd Coaching Reason">
+                  <button class="btn btn-primary" id="push-third-coaching-reason">Push Update</button>
+                </form>
+                <hr>
+              </div>
+              <div class="col-sm-6">
+                <h3 class="info-heading">Termination:</h3>
+                <p>Date: <strong class="make-result-white" id="search-disc-term-date"></strong></p>
+                <p>Reason:</p>
+                <strong class="make-result-white" id="search-disc-term-reason"></strong>
+                <br>
+                <br>
+                <form class="edit-form">
+                  <input type="text" id="update-disc-term-date" placeholder="Termination Date">
+                  <button class="btn btn-primary" id="push-disc-term-date">Push Update</button>
+                  <br>
+                  <br>
+                  <textarea rows="5" cols="40" id="update-disc-term-reason" placeholder="Termination Reason"></textarea>
+                  <br>
+                  <button class="btn btn-primary" id="push-disc-term-reason">Push Update</button>
+                </form>
+                <hr>
+              </div>
+            </div>
+            <hr class="my-4">
+            <h2 style="text-decoration: underline">Vacation Days</h2>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="info-heading">Date of Eligibility:</h3>
+                <p><strong class="make-result-white" id="search-vacation-eligible-date"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-vacation-eligible-date">
+                  <button class="btn btn-primary" id="push-vacation-eligible-date">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Available Vacation Days:</h3>
+                <p><strong class="make-result-white" id="search-available-vacation"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-available-vacation">
+                  <button class="btn btn-primary" id="push-available-vacation">Push Update</button>
+                </form>
+                <hr>
+              </div>
+              <div class="col-sm-6">
+                <h3 class="info-heading">Vacation Renewal Date:</h3>
+                <p><strong class="make-result-white" id="search-vacation-renewal"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-vacation-renewal">
+                  <button class="btn btn-primary" id="push-vacation-renewal">Push Update</button>
+                </form>
+                <hr>
+                <h3 class="info-heading">Vacation Days Used YTD:</h3>
+                <p><strong class="make-result-white" id="search-vacation-used"></strong></p>
+                <form class="edit-form">
+                  <input type="text" id="update-vacation-used">
+                  <button class="btn btn-primary" id="push-vacation-used">Push Update</button>
+                </form>
+                <hr>
+              </div>
+            </div>
+            <hr class="my-4">
+            <h2 style="text-decoration: underline">Absence Tracker</h2>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="info-heading">Date:</h3>
+                <br>
+                <div id="date-container">
+                  <div id="put-date-here"></div>
+                </div>
+                <br>
+                <form class="edit-form">
                   <input type="text" id="update-absence-date">
                   <br>
                   <br>
                   <button class="btn btn-primary" id="push-absence-date">Push Update</button>
                 </form>
-          </div>
-          <div class="col-sm-6">
-            <h3 class="info-heading">Reason:</h3>
-            <br>
-            <div id="reason-container">
-            <div id="put-reason-here"></div>
+              </div>
+              <div class="col-sm-6">
+                <h3 class="info-heading">Reason:</h3>
+                <br>
+                <div id="reason-container">
+                  <div id="put-reason-here"></div>
+                </div>
+                <br>
+                <form class="edit-form">
+                  <input type="text" id="update-absence-reason">
+                  <br>
+                  <br>
+                  <button class="btn btn-primary" id="push-absence-reason">Push Update</button>
+                </form>
+              </div>
             </div>
-            <br>
-            <form class="edit-form">
-                <input type="text" id="update-absence-reason">
-                <br>
-                <br>
-                <button class="btn btn-primary" id="push-absence-reason">Push Update</button>
-              </form>
-          </div>
+          </div> <!-- Container End -->
         </div>
-        </div> <!-- Container End -->
-        </div>
-    </div>
+      </div>
 
-    <div id="hide-print3">
+      <div id="hide-print3">
         <br class="hide-br">
         <br class="hide-br">
         <br class="hide-br">
-    </div>
+      </div>
 
-    <!-- Footer -->
-    <footer id="footer">
+      <!-- Footer -->
+      <footer id="footer">
         <div>
-            <p class="footer-txt">Innevape Labs USA™</p>
+          <p class="footer-txt">Innevape Labs USA™</p>
         </div>
-    </footer>
+      </footer>
+
+    </div>
 
   </div>
-   
-  </div>
-  
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-    <!-- jQuery JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <!-- jQuery JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  
-    <!-- JS -->
-    <script src="assets/javascript/app.js"></script>
-    <script src="assets/javascript/auth.js"></script>
+
+  <!-- JS -->
+  <script src="assets/javascript/app.js"></script>
+  <script src="assets/javascript/auth.js"></script>
 </body>
+
 </html>
