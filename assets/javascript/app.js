@@ -24,8 +24,14 @@ function recaptchaCallback() {
     submitBtn.style.cursor = "pointer"
 }
 
+function recaptchaCallbackTwo() {
+    var submitBtnTwo = document.querySelector("#submit-btn-two")
+    submitBtnTwo.removeAttribute("disabled")
+    submitBtnTwo.style.cursor = "pointer"
+}
+
 // Signup new user
-$("#submit-new-user").on("click", (e) => {
+$("#submit-btn-two").on("click", (e) => {
     e.preventDefault()
     var newName = $("#new-user-fullname").val()
     var newEmail = $("#new-user-login-email").val()
@@ -206,6 +212,7 @@ auth.onAuthStateChanged(user => {
         // Hide namelist
         $("#hide-name-reference").on("click", function () {
             $("#name-reference").css("display", "none")
+            $("#name-list").empty()
         })
 
         // Show and display search results
@@ -1255,6 +1262,7 @@ $("#retaliation").on("click", function () {
     }
 })
 
+// Show checkbox function
 var showCheckbox = function () {
     var retrievedData = localStorage.getItem("readDocuments")
     var hasRead = JSON.parse(retrievedData)
