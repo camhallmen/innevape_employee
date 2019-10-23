@@ -395,6 +395,10 @@ li {
     cursor: not-allowed;
 }
 
+#submit-btn-two {
+    cursor: not-allowed;
+}
+
 #policies-checkbox {
     display: none;
 }
