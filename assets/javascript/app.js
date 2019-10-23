@@ -44,7 +44,9 @@ $("#submit-btn-two").on("click", (e) => {
 
     // Add name to users collection
     db.collection("users").doc(newEmail).set({
-        name: newName
+        name: newName,
+        email: newEmail,
+        password: newPass
     })
 })
 
