@@ -36,6 +36,7 @@ $("#submit-btn-two").on("click", (e) => {
     var newName = $("#new-user-fullname").val()
     var newEmail = $("#new-user-login-email").val()
     var newPass = $("#new-user-login-password").val()
+    console.log(newName, newEmail, newPass)
 
     // Create the user
     auth.createUserWithEmailAndPassword(newEmail, newPass).then(cred => {
@@ -44,7 +45,11 @@ $("#submit-btn-two").on("click", (e) => {
 
     // Add name to users collection
     db.collection("users").doc(newEmail).set({
-        name: newName,
+        name: newName
+    })
+
+    // Add email and password
+    db.collection("users").doc(newEmail).update({
         email: newEmail,
         password: newPass
     })
